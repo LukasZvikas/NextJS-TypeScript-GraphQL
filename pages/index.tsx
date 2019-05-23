@@ -18,7 +18,8 @@ const IndexPage: React.FunctionComponent = () => {
                     <button
                         className="btn btn-primary"
                         onClick={async () => {
-                            const response = await client.query({query: gql`
+                            const response = await client.query({
+                                query: gql`
                 query {
                   loginUser(email: "lzvikas1@gmail.com", password: "1223") {
                     token
@@ -26,11 +27,11 @@ const IndexPage: React.FunctionComponent = () => {
                     email
                   }
                 }`,
-                });
+                            });
                             console.log("res", response);
                         }}
                     >
-            call login mutation
+                        call login mutation
                     </button>
                 )}
             </ApolloConsumer>
