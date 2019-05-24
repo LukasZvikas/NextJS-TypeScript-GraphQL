@@ -93,6 +93,52 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
+/***/ "./components/Alert.tsx":
+/*!******************************!*\
+  !*** ./components/Alert.tsx ***!
+  \******************************/
+/*! exports provided: Alert */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Alert", function() { return Alert; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var _jsxFileName = "/Users/lukas/Documents/GitHub/nextjs-graphql-typescript/components/Alert.tsx";
+
+var Alert = function Alert(_ref) {
+  var message = _ref.message,
+      isSuccess = _ref.isSuccess;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "alert alert__success d-flex justify-content-center flex-column align-items-center p-3 ".concat(isSuccess ? "alert__success" : "alert__error"),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 10
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+    className: "text-white",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 15
+    },
+    __self: this
+  }, isSuccess ? "Success!" : "Error!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-white text-center",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 18
+    },
+    __self: this
+  }, message));
+};
+Alert.defaultProps = {
+  isSuccess: false
+};
+
+/***/ }),
+
 /***/ "./components/InputField.tsx":
 /*!***********************************!*\
   !*** ./components/InputField.tsx ***!
@@ -1473,6 +1519,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _graphql_auth_register__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../graphql/auth/register */ "./graphql/auth/register.tsx");
 /* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-apollo */ "react-apollo");
 /* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(react_apollo__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _utilities_emailValidation__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../utilities/emailValidation */ "./utilities/emailValidation.ts");
+/* harmony import */ var _utilities_errorMessages__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../utilities/errorMessages */ "./utilities/errorMessages.ts");
+/* harmony import */ var _components_Alert__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../components/Alert */ "./components/Alert.tsx");
 
 
 
@@ -1481,6 +1530,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var _jsxFileName = "/Users/lukas/Documents/GitHub/nextjs-graphql-typescript/pages/register.tsx";
+
+
+
 
 
 
@@ -1508,25 +1560,63 @@ function (_Component) {
     Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__["default"])(_this), "state", {
       email: "",
       password: "",
-      passwordConfirm: ""
+      passwordConfirm: "",
+      errorMessage: ""
+    });
+
+    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__["default"])(_this), "clearErrorMessage", function () {
+      _this.setState({
+        errorMessage: ""
+      });
     });
 
     Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__["default"])(_this), "onEmailChange", function (value) {
+      var errorMessage = _this.state.errorMessage;
+      if (errorMessage) _this.clearErrorMessage();
+
       _this.setState({
         email: value
       });
     });
 
     Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__["default"])(_this), "onPasswordChange", function (value) {
+      var errorMessage = _this.state.errorMessage;
+      if (errorMessage) _this.clearErrorMessage();
+
       _this.setState({
         password: value
       });
     });
 
     Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__["default"])(_this), "onPasswordConfirmChange", function (value) {
+      var errorMessage = _this.state.errorMessage;
+      if (errorMessage) _this.clearErrorMessage();
+
       _this.setState({
         passwordConfirm: value
       });
+    });
+
+    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__["default"])(_this), "validatePasswordMatch", function (passwordOne, passwordTwo) {
+      if (passwordOne !== passwordTwo) return false;
+      return true;
+    });
+
+    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__["default"])(_this), "validatePasswordLength", function (password) {
+      if (password.length < 5) return false;
+      return true;
+    });
+
+    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__["default"])(_this), "validateInputs", function (email, password, passwordConfirm) {
+      if (!email || !password || !passwordConfirm) {
+        return _utilities_errorMessages__WEBPACK_IMPORTED_MODULE_13__["UNFILLED_FIELDS_ERROR"];
+      } else if (!Object(_utilities_emailValidation__WEBPACK_IMPORTED_MODULE_12__["validateEmail"])(email)) {
+        return _utilities_errorMessages__WEBPACK_IMPORTED_MODULE_13__["INVALID_EMAIL_ERROR"];
+      } else if (!_this.validatePasswordMatch(password, passwordConfirm)) {
+        return _utilities_errorMessages__WEBPACK_IMPORTED_MODULE_13__["PASS_MISMATCH_ERROR"];
+      } else if (!_this.validatePasswordLength(password)) {
+        return _utilities_errorMessages__WEBPACK_IMPORTED_MODULE_13__["PASS_LENGTH_ERROR"];
+      }
     });
 
     return _this;
@@ -1539,19 +1629,21 @@ function (_Component) {
 
       var _this$state = this.state,
           email = _this$state.email,
-          password = _this$state.password;
+          password = _this$state.password,
+          passwordConfirm = _this$state.passwordConfirm,
+          errorMessage = _this$state.errorMessage;
       return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_Layout__WEBPACK_IMPORTED_MODULE_8__["default"], {
         title: "Register",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 25
+          lineNumber: 69
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react_apollo__WEBPACK_IMPORTED_MODULE_11__["Mutation"], {
         mutation: _graphql_auth_register__WEBPACK_IMPORTED_MODULE_10__["registerMutation"],
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 26
+          lineNumber: 70
         },
         __self: this
       }, function (register, _ref) {
@@ -1559,32 +1651,51 @@ function (_Component) {
         return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_7__["Fragment"], {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 29
+            lineNumber: 73
           },
           __self: this
-        }, error ? react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+        }, error ? react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_Alert__WEBPACK_IMPORTED_MODULE_14__["Alert"], {
+          message: error.message,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 30
+            lineNumber: 74
           },
           __self: this
-        }, error.message) : null, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+        }) : null, errorMessage ? react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_Alert__WEBPACK_IMPORTED_MODULE_14__["Alert"], {
+          message: errorMessage,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 31
+            lineNumber: 75
+          },
+          __self: this
+        }) : null, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 76
           },
           __self: this
         }, "Register"), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
           className: "row d-flex justify-content-center",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 32
+            lineNumber: 77
           },
           __self: this
         }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("form", {
           className: "d-flex flex-column col-10 col-sm-6 col-md-4",
           onSubmit: function onSubmit(e) {
             e.preventDefault();
+
+            var isInvalidInputs = _this2.validateInputs(email, password, passwordConfirm);
+
+            if (isInvalidInputs) {
+              _this2.setState({
+                errorMessage: isInvalidInputs
+              });
+
+              return;
+            }
+
             register({
               variables: {
                 email: email,
@@ -1594,7 +1705,7 @@ function (_Component) {
           },
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 33
+            lineNumber: 78
           },
           __self: this
         }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_InputField__WEBPACK_IMPORTED_MODULE_9__["InputField"], {
@@ -1605,7 +1716,7 @@ function (_Component) {
           },
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 40
+            lineNumber: 90
           },
           __self: this
         }), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_InputField__WEBPACK_IMPORTED_MODULE_9__["InputField"], {
@@ -1617,7 +1728,7 @@ function (_Component) {
           },
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 45
+            lineNumber: 95
           },
           __self: this
         }), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_InputField__WEBPACK_IMPORTED_MODULE_9__["InputField"], {
@@ -1629,21 +1740,21 @@ function (_Component) {
           },
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 51
+            lineNumber: 101
           },
           __self: this
         }), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
           className: "d-flex justify-content-center",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 57
+            lineNumber: 107
           },
           __self: this
         }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("button", {
           className: "button button__primary",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 58
+            lineNumber: 108
           },
           __self: this
         }, "Sign Up")))));
@@ -1655,6 +1766,44 @@ function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_7__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (Register);
+
+/***/ }),
+
+/***/ "./utilities/emailValidation.ts":
+/*!**************************************!*\
+  !*** ./utilities/emailValidation.ts ***!
+  \**************************************/
+/*! exports provided: validateEmail */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "validateEmail", function() { return validateEmail; });
+var regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+var validateEmail = function validateEmail(email) {
+  var invalidEmail = regex.test(email);
+  return invalidEmail;
+};
+
+/***/ }),
+
+/***/ "./utilities/errorMessages.ts":
+/*!************************************!*\
+  !*** ./utilities/errorMessages.ts ***!
+  \************************************/
+/*! exports provided: INVALID_EMAIL_ERROR, PASS_MISMATCH_ERROR, PASS_LENGTH_ERROR, UNFILLED_FIELDS_ERROR */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "INVALID_EMAIL_ERROR", function() { return INVALID_EMAIL_ERROR; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PASS_MISMATCH_ERROR", function() { return PASS_MISMATCH_ERROR; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PASS_LENGTH_ERROR", function() { return PASS_LENGTH_ERROR; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UNFILLED_FIELDS_ERROR", function() { return UNFILLED_FIELDS_ERROR; });
+var INVALID_EMAIL_ERROR = "Error: please provide a valid email";
+var PASS_MISMATCH_ERROR = "Error: your passwords must match";
+var PASS_LENGTH_ERROR = "Error: your password must be at least 5 characters length";
+var UNFILLED_FIELDS_ERROR = "Error: you must complete all of the fields";
 
 /***/ }),
 
