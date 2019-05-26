@@ -94,11 +94,14 @@ class Register extends Component<{}, RegisterState> {
             return UNFILLED_FIELDS_ERROR;
         } else if (!validateEmail(email)) {
             return INVALID_EMAIL_ERROR;
-        } else if (!this.validatePasswordMatch(password, passwordConfirm)) {
-            return PASS_MISMATCH_ERROR;
-        } else if (!this.validatePasswordLength(password)) {
+        }
+        else if (!this.validatePasswordLength(password)) {
             return PASS_LENGTH_ERROR;
         }
+        else if (!this.validatePasswordMatch(password, passwordConfirm)) {
+            return PASS_MISMATCH_ERROR;
+        }
+        return null;
     }
 
     render() {

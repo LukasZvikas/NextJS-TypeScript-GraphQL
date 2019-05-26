@@ -70,7 +70,6 @@ var ButtonPrimary = function ButtonPrimary(_ref) {
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    type: "submit",
     className: "button button__primary",
     __source: {
       fileName: _jsxFileName,
@@ -30959,11 +30958,13 @@ function (_Component) {
         return _utilities_errorMessages__WEBPACK_IMPORTED_MODULE_13__["UNFILLED_FIELDS_ERROR"];
       } else if (!Object(_utilities_emailValidation__WEBPACK_IMPORTED_MODULE_12__["validateEmail"])(email)) {
         return _utilities_errorMessages__WEBPACK_IMPORTED_MODULE_13__["INVALID_EMAIL_ERROR"];
-      } else if (!this.validatePasswordMatch(password, passwordConfirm)) {
-        return _utilities_errorMessages__WEBPACK_IMPORTED_MODULE_13__["PASS_MISMATCH_ERROR"];
       } else if (!this.validatePasswordLength(password)) {
         return _utilities_errorMessages__WEBPACK_IMPORTED_MODULE_13__["PASS_LENGTH_ERROR"];
+      } else if (!this.validatePasswordMatch(password, passwordConfirm)) {
+        return _utilities_errorMessages__WEBPACK_IMPORTED_MODULE_13__["PASS_MISMATCH_ERROR"];
       }
+
+      return null;
     }
   }, {
     key: "render",
@@ -30975,7 +30976,7 @@ function (_Component) {
         title: 'Register',
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 108
+          lineNumber: 111
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react_apollo__WEBPACK_IMPORTED_MODULE_11__["Mutation"], {
@@ -30983,7 +30984,7 @@ function (_Component) {
         onError: function onError() {},
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 109
+          lineNumber: 112
         },
         __self: this
       }, function (register, _ref) {
@@ -30994,7 +30995,7 @@ function (_Component) {
           return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_LoadingBar__WEBPACK_IMPORTED_MODULE_16__["LoadingBar"], {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 112
+              lineNumber: 115
             },
             __self: this
           });
@@ -31003,34 +31004,34 @@ function (_Component) {
         return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_7__["Fragment"], {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 115
+            lineNumber: 118
           },
           __self: this
         }, error ? react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_Alert__WEBPACK_IMPORTED_MODULE_14__["Alert"], {
           message: error.graphQLErrors[0].message,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 117
+            lineNumber: 120
           },
           __self: this
         }) : null, errorMessage ? react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_Alert__WEBPACK_IMPORTED_MODULE_14__["Alert"], {
           message: errorMessage,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 119
+            lineNumber: 122
           },
           __self: this
         }) : null, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 120
+            lineNumber: 123
           },
           __self: this
         }, "Register"), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
           className: "row d-flex justify-content-center",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 121
+            lineNumber: 124
           },
           __self: this
         }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("form", {
@@ -31038,7 +31039,7 @@ function (_Component) {
           onSubmit: _this2.handleSubmit.bind(_this2, register),
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 122
+            lineNumber: 125
           },
           __self: this
         }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_InputField__WEBPACK_IMPORTED_MODULE_9__["InputField"], {
@@ -31049,7 +31050,7 @@ function (_Component) {
           },
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 126
+            lineNumber: 129
           },
           __self: this
         }), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_InputField__WEBPACK_IMPORTED_MODULE_9__["InputField"], {
@@ -31061,7 +31062,7 @@ function (_Component) {
           },
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 133
+            lineNumber: 136
           },
           __self: this
         }), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_InputField__WEBPACK_IMPORTED_MODULE_9__["InputField"], {
@@ -31073,14 +31074,14 @@ function (_Component) {
           },
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 142
+            lineNumber: 145
           },
           __self: this
         }), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_ButtonPrimary__WEBPACK_IMPORTED_MODULE_15__["ButtonPrimary"], {
           title: 'Sign Up',
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 150
+            lineNumber: 153
           },
           __self: this
         }))));
