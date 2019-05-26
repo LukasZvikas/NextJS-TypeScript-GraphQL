@@ -21,7 +21,7 @@ interface Options {
 
 function create(initialState: any, { getToken }: Options) {
   const httpLink = createHttpLink({
-    uri: "http://localhost:4000/graphql",
+    uri: "http://localhost:4000/graphql"
     // credentials: "include"
   });
 
@@ -40,7 +40,7 @@ function create(initialState: any, { getToken }: Options) {
     connectToDevTools: isBrowser,
     ssrMode: !isBrowser, // Disables forceFetch on the server (so queries are only run once)
     link: authLink.concat(httpLink),
-    cache: new InMemoryCache().restore(initialState || {}),
+    cache: new InMemoryCache().restore(initialState || {})
   });
 }
 
