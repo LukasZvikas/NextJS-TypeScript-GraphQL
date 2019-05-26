@@ -1,7 +1,7 @@
 import Link from "next/link";
 import * as React from "react";
 import Layout from "../components/Layout";
-import { ApolloConsumer } from 'react-apollo';
+import { ApolloConsumer } from "react-apollo";
 import gql from "graphql-tag";
 
 const IndexPage: React.FunctionComponent = () => {
@@ -16,20 +16,22 @@ const IndexPage: React.FunctionComponent = () => {
             <ApolloConsumer>
                 {(client: any) => (
                     <button
+                        className="btn btn-primary"
                         onClick={async () => {
-                            const response = await client.query({query: gql`
+                            const response = await client.query({
+                                query: gql`
                 query {
                   loginUser(email: "lzvikas1@gmail.com", password: "1223") {
                     token
                     userId
                     email
                   }
-                }`
+                }`,
                             });
-                            console.log('res', response)
+                            console.log("res", response);
                         }}
                     >
-            call login mutation
+                        call login mutation
                     </button>
                 )}
             </ApolloConsumer>

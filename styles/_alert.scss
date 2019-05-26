@@ -1,0 +1,16 @@
+.alert {
+  position: absolute;
+  border-radius: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 50px;
+  z-index: 2000;
+
+  &__success {
+    background-color: $color-success;
+  }
+
+  &__error {
+    background-color: $color-error;
+  }
+}

@@ -1,4 +1,4 @@
-const { gql } = require('apollo-server-express');
+const { gql } = require("apollo-server-express");
 
 module.exports = gql`
   type User {
@@ -11,7 +11,7 @@ module.exports = gql`
   }
 
   type AuthType {
-    userId: String! 
+    userId: String!
     email: String
     token: String!
   }
