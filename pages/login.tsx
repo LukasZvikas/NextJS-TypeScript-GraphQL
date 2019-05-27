@@ -66,9 +66,7 @@ class Login extends Component<{}, LoginState> {
     validateInputs(email: string, password: string) {
         if (!email || !password) {
             return UNFILLED_FIELDS_ERROR;
-        } else if (!validateEmail(email)) {
-            return INVALID_EMAIL_ERROR;
-        }
+        };
         return null;
     }
 
@@ -80,7 +78,6 @@ class Login extends Component<{}, LoginState> {
                 <Mutation mutation={LOGIN_MUTATION} onError={() => { }}>
                     {(login: any, { loading, error, data }: any) => {
                         if (loading) {
-                            console.log('loading');
                             return <LoadingBar />;
                         }
                         else if (!error && data) {
@@ -92,7 +89,7 @@ class Login extends Component<{}, LoginState> {
                                     <Alert message={error.graphQLErrors[0].message} />
                                 ) : null}
                                 {errorMessage ? <Alert message={errorMessage} /> : null}
-                                <div>Register</div>
+                                <div>Login</div>
                                 <div className="row d-flex justify-content-center">
                                     <form
                                         className="d-flex flex-column col-10 col-sm-6 col-md-4"

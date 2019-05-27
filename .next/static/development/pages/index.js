@@ -27782,7 +27782,7 @@ var IndexPage = function IndexPage() {
 
               case 2:
                 response = _context.sent;
-                console.log("res", response);
+                console.log('res', response);
 
               case 4:
               case "end":

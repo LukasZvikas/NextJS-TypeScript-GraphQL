@@ -31,7 +31,7 @@ function create(initialState: any, { getToken }: Options) {
     return {
       headers: {
         ...headers,
-        cookie: token ? `qid=${token}` : "qid=''"
+        cookie: token ? `qid=${token}` : "qid="
       }
     };
   });

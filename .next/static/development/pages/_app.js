@@ -41,7 +41,7 @@ function create(initialState, _ref) {
     console.log("header", headers);
     return {
       headers: Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, headers, {
-        cookie: token ? "qid=".concat(token) : "qid=''"
+        cookie: token ? "qid=".concat(token) : "qid="
       })
     };
   }); // Check out https://github.com/zeit/next.js/pull/4611 if you want to use the AWSAppSyncClient

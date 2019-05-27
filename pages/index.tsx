@@ -1,8 +1,8 @@
-import Link from "next/link";
-import * as React from "react";
-import Layout from "../components/Layout";
-import { ApolloConsumer } from "react-apollo";
-import gql from "graphql-tag";
+import Link from 'next/link';
+import * as React from 'react';
+import Layout from '../components/Layout';
+import { ApolloConsumer } from 'react-apollo';
+import gql from 'graphql-tag';
 
 const IndexPage: React.FunctionComponent = () => {
     return (
@@ -28,7 +28,7 @@ const IndexPage: React.FunctionComponent = () => {
                   }
                 }`,
                             });
-                            console.log("res", response);
+                            console.log('res', response);
                         }}
                     >
                         call login mutation

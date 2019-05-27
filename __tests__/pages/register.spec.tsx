@@ -45,6 +45,10 @@ const populateInputFields = (wrap: any) => {
 describe('Register page', () => {
   let wrap: any;
 
+  const registerUser = {
+    signUp: { email: 'test@gmail.com', password: 'password' }
+  };
+
   describe('Methods', () => {
     beforeEach(() => {
       wrap = mount(
@@ -99,9 +103,6 @@ describe('Register page', () => {
   });
   describe('After register mutation triggered', () => {
     it('renders loading state initially', done => {
-      const registerUser = {
-        signUp: { email: 'test@gmail.com', password: 'password' }
-      };
 
       const mocks = [
         {

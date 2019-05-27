@@ -30811,13 +30811,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_InputField__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/InputField */ "./components/InputField.tsx");
 /* harmony import */ var _graphql_auth_login__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../graphql/auth/login */ "./graphql/auth/login.tsx");
 /* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-apollo */ "./node_modules/react-apollo/react-apollo.esm.js");
-/* harmony import */ var _utilities_emailValidation__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../utilities/emailValidation */ "./utilities/emailValidation.ts");
-/* harmony import */ var _utilities_errorMessages__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../utilities/errorMessages */ "./utilities/errorMessages.ts");
-/* harmony import */ var _components_Alert__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../components/Alert */ "./components/Alert.tsx");
-/* harmony import */ var _components_ButtonPrimary__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../components/ButtonPrimary */ "./components/ButtonPrimary.tsx");
-/* harmony import */ var _components_LoadingBar__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../components/LoadingBar */ "./components/LoadingBar.tsx");
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! next/router */ "./node_modules/next/dist/client/router.js");
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_17__);
+/* harmony import */ var _utilities_errorMessages__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../utilities/errorMessages */ "./utilities/errorMessages.ts");
+/* harmony import */ var _components_Alert__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../components/Alert */ "./components/Alert.tsx");
+/* harmony import */ var _components_ButtonPrimary__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../components/ButtonPrimary */ "./components/ButtonPrimary.tsx");
+/* harmony import */ var _components_LoadingBar__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../components/LoadingBar */ "./components/LoadingBar.tsx");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! next/router */ "./node_modules/next/dist/client/router.js");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_16__);
 
 
 
@@ -30826,7 +30825,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var _jsxFileName = "/Users/lukas/Documents/GitHub/nextjs-graphql-typescript/pages/login.tsx";
-
 
 
 
@@ -30925,11 +30923,10 @@ function (_Component) {
     key: "validateInputs",
     value: function validateInputs(email, password) {
       if (!email || !password) {
-        return _utilities_errorMessages__WEBPACK_IMPORTED_MODULE_13__["UNFILLED_FIELDS_ERROR"];
-      } else if (!Object(_utilities_emailValidation__WEBPACK_IMPORTED_MODULE_12__["validateEmail"])(email)) {
-        return _utilities_errorMessages__WEBPACK_IMPORTED_MODULE_13__["INVALID_EMAIL_ERROR"];
+        return _utilities_errorMessages__WEBPACK_IMPORTED_MODULE_12__["UNFILLED_FIELDS_ERROR"];
       }
 
+      ;
       return null;
     }
   }, {
@@ -30942,7 +30939,7 @@ function (_Component) {
         title: 'Login',
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 79
+          lineNumber: 77
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react_apollo__WEBPACK_IMPORTED_MODULE_11__["Mutation"], {
@@ -30950,7 +30947,7 @@ function (_Component) {
         onError: function onError() {},
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 80
+          lineNumber: 78
         },
         __self: this
       }, function (login, _ref) {
@@ -30959,49 +30956,48 @@ function (_Component) {
             data = _ref.data;
 
         if (loading) {
-          console.log('loading');
-          return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_LoadingBar__WEBPACK_IMPORTED_MODULE_16__["LoadingBar"], {
+          return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_LoadingBar__WEBPACK_IMPORTED_MODULE_15__["LoadingBar"], {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 84
+              lineNumber: 81
             },
             __self: this
           });
         } else if (!error && data) {
-          next_router__WEBPACK_IMPORTED_MODULE_17___default.a.push('/');
+          next_router__WEBPACK_IMPORTED_MODULE_16___default.a.push('/');
         }
 
         return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_7__["Fragment"], {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 90
+            lineNumber: 87
           },
           __self: this
-        }, error ? react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_Alert__WEBPACK_IMPORTED_MODULE_14__["Alert"], {
+        }, error ? react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_Alert__WEBPACK_IMPORTED_MODULE_13__["Alert"], {
           message: error.graphQLErrors[0].message,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 92
+            lineNumber: 89
           },
           __self: this
-        }) : null, errorMessage ? react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_Alert__WEBPACK_IMPORTED_MODULE_14__["Alert"], {
+        }) : null, errorMessage ? react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_Alert__WEBPACK_IMPORTED_MODULE_13__["Alert"], {
           message: errorMessage,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 94
+            lineNumber: 91
           },
           __self: this
         }) : null, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 95
+            lineNumber: 92
           },
           __self: this
-        }, "Register"), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+        }, "Login"), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
           className: "row d-flex justify-content-center",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 96
+            lineNumber: 93
           },
           __self: this
         }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("form", {
@@ -31009,7 +31005,7 @@ function (_Component) {
           onSubmit: _this2.handleSubmit.bind(_this2, login),
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 97
+            lineNumber: 94
           },
           __self: this
         }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_InputField__WEBPACK_IMPORTED_MODULE_9__["InputField"], {
@@ -31020,7 +31016,7 @@ function (_Component) {
           },
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 101
+            lineNumber: 98
           },
           __self: this
         }), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_InputField__WEBPACK_IMPORTED_MODULE_9__["InputField"], {
@@ -31032,14 +31028,14 @@ function (_Component) {
           },
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 108
+            lineNumber: 105
           },
           __self: this
-        }), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_ButtonPrimary__WEBPACK_IMPORTED_MODULE_15__["ButtonPrimary"], {
+        }), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_ButtonPrimary__WEBPACK_IMPORTED_MODULE_14__["ButtonPrimary"], {
           title: 'Login',
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 117
+            lineNumber: 114
           },
           __self: this
         }))));
@@ -31051,24 +31047,6 @@ function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_7__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (Login);
-
-/***/ }),
-
-/***/ "./utilities/emailValidation.ts":
-/*!**************************************!*\
-  !*** ./utilities/emailValidation.ts ***!
-  \**************************************/
-/*! exports provided: validateEmail */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "validateEmail", function() { return validateEmail; });
-var regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-var validateEmail = function validateEmail(email) {
-  var invalidEmail = regex.test(email);
-  return invalidEmail;
-};
 
 /***/ }),
 
@@ -31092,7 +31070,7 @@ var UNFILLED_FIELDS_ERROR = 'Error: you must complete all of the fields';
 
 /***/ }),
 
-/***/ 3:
+/***/ 2:
 /*!***********************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Flogin&absolutePagePath=%2FUsers%2Flukas%2FDocuments%2FGitHub%2Fnextjs-graphql-typescript%2Fpages%2Flogin.tsx ***!
   \***********************************************************************************************************************************************************/
@@ -31115,5 +31093,5 @@ module.exports = dll_1aef2d0bbc0d334d831c;
 
 /***/ })
 
-},[[3,"static/runtime/webpack.js"]]]);
+},[[2,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=login.js.map
