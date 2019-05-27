@@ -1,9 +1,9 @@
-import App, { Container } from "next/app";
-import React from "react";
-import { ApolloProvider } from "react-apollo";
-import withApollo from "../lib/withApollo";
-import Head from "next/head";
-import "../styles/main.scss";
+import App, { Container } from 'next/app';
+import React from 'react';
+import { ApolloProvider } from 'react-apollo';
+import withApollo from '../lib/withApollo';
+import Head from 'next/head';
+import '../styles/main.scss';
 
 class MyApp extends App<any> {
     // eslint-disable-next-line @typescript-eslint/explicit-member-accessibility

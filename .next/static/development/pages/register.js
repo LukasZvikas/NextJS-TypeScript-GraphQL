@@ -306,7 +306,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function _templateObject() {
-  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  mutation Register($email: String!, $password: String!) {\n    signUp(email: $email, password: $password) {\n      email\n      password\n    }\n  }\n"]);
+  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    mutation Register($email: String!, $password: String!) {\n        signUp(email: $email, password: $password) {\n            email\n            password\n        }\n    }\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -31134,7 +31134,7 @@ var UNFILLED_FIELDS_ERROR = 'Error: you must complete all of the fields';
 
 /***/ }),
 
-/***/ 3:
+/***/ 2:
 /*!*****************************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fregister&absolutePagePath=%2FUsers%2Flukas%2FDocuments%2FGitHub%2Fnextjs-graphql-typescript%2Fpages%2Fregister.tsx ***!
   \*****************************************************************************************************************************************************************/
@@ -31157,5 +31157,5 @@ module.exports = dll_1aef2d0bbc0d334d831c;
 
 /***/ })
 
-},[[3,"static/runtime/webpack.js"]]]);
+},[[2,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=register.js.map

@@ -32,15 +32,16 @@ if (!_isBrowser__WEBPACK_IMPORTED_MODULE_5__["isBrowser"]) {
 function create(initialState, _ref) {
   var getToken = _ref.getToken;
   var httpLink = Object(apollo_link_http__WEBPACK_IMPORTED_MODULE_3__["createHttpLink"])({
-    uri: "http://localhost:4000/graphql" // credentials: "include"
-
+    uri: "http://localhost:4000/graphql",
+    credentials: "include"
   });
   var authLink = Object(apollo_link_context__WEBPACK_IMPORTED_MODULE_2__["setContext"])(function (_, _ref2) {
     var headers = _ref2.headers;
     var token = getToken();
+    console.log("header", headers);
     return {
       headers: Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, headers, {
-        cookie: token ? "qid=".concat(token) : ""
+        cookie: token ? "qid=".concat(token) : "qid=''"
       })
     };
   }); // Check out https://github.com/zeit/next.js/pull/4611 if you want to use the AWSAppSyncClient
@@ -140,7 +141,7 @@ var _jsxFileName = "/Users/lukas/Documents/GitHub/nextjs-graphql-typescript/lib/
 
 function parseCookies(req) {
   var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  return cookie__WEBPACK_IMPORTED_MODULE_11___default.a.parse(req ? req.headers.cookie || "" : document.cookie, options);
+  return cookie__WEBPACK_IMPORTED_MODULE_11___default.a.parse(req ? req.headers.cookie || '' : document.cookie, options);
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (function (App) {
@@ -220,7 +221,7 @@ function parseCookies(req) {
                   // Prevent Apollo Client GraphQL errors from crashing SSR.
                   // Handle them in components via the data.error prop:
                   // https://www.apollographql.com/docs/react/api/react-apollo.html#graphql-query-data-error
-                  console.error("Error while running `getDataFromTree`", _context.t0);
+                  console.error('Error while running `getDataFromTree`', _context.t0);
 
                 case 19:
                   // getDataFromTree does not call componentWillUnmount

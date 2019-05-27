@@ -21,16 +21,17 @@ interface Options {
 
 function create(initialState: any, { getToken }: Options) {
   const httpLink = createHttpLink({
-    uri: "http://localhost:4000/graphql"
-    // credentials: "include"
+    uri: "http://localhost:4000/graphql",
+    credentials: "include"
   });
 
   const authLink = setContext((_, { headers }) => {
     const token = getToken();
+    console.log("header", headers);
     return {
       headers: {
         ...headers,
-        cookie: token ? `qid=${token}` : ""
+        cookie: token ? `qid=${token}` : "qid=''"
       }
     };
   });

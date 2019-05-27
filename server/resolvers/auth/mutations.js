@@ -1,11 +1,14 @@
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const Auth = require('../../models/auth');
-const { EMAIL_JWT_SECRET } = require('../../config/keys');
-const { EXISTING_USER_ERROR } = require('../../utilities/errorTypes');
-const { sendEmail } = require('../../utilities/sendEmail');
-const { verifyJwt } = require('../../utilities/jwt');
-const confirmEmailTemplate = require('../../utilities/emailTemplates/confirmEmail');
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const Auth = require("../../models/auth");
+const { JWT_SECRET, EMAIL_JWT_SECRET } = require("../../config/keys");
+const {
+  EXISTING_USER_ERROR,
+  INVALID_CREDENTIALS_ERROR
+} = require("../../utilities/errorTypes");
+const { sendEmail } = require("../../utilities/sendEmail");
+const { verifyJwt } = require("../../utilities/jwt");
+const confirmEmailTemplate = require("../../utilities/emailTemplates/confirmEmail");
 
 module.exports = {
   signUp: async (_, { email, password }) => {
@@ -17,15 +20,19 @@ module.exports = {
         const hashedPassword = await bcrypt.hash(password, 12);
 
         const newUser = new Auth({
-          email, password: hashedPassword,
+          email,
+          password: hashedPassword
         });
         const savedUser = await newUser.save();
 
         const emailToken = jwt.sign(
-          { id: newUser._id, email }, EMAIL_JWT_SECRET,
+          { id: newUser._id, email },
+          EMAIL_JWT_SECRET
         );
 
-        const { subject, body } = confirmEmailTemplate(`http://localhost:4000/confirmation/${emailToken}`);
+        const { subject, body } = confirmEmailTemplate(
+          `http://localhost:4000/confirmation/${emailToken}`
+        );
 
         sendEmail({ subject, body, receiver: email });
 
@@ -35,15 +42,43 @@ module.exports = {
       throw err;
     }
   },
+  loginUser: async (_, { email, password }, { res }) => {
+    console.log("res", res);
+    try {
+      const user = await Auth.findOne({ email });
+      if (user) {
+        const isCorrectPassword = await bcrypt.compare(password, user.password);
+
+        if (!isCorrectPassword) throw new Error(INVALID_CREDENTIALS_ERROR);
+
+        const token = jwt.sign({ id: user._id, email: user.email }, JWT_SECRET);
+
+        res.cookie("id", token, {
+          httpOnly: true,
+          secure: false,
+          maxAge: 100 * 60 * 60 * 24 * 7
+        });
+
+        return { userId: user._id, email: user.email };
+      }
+
+      throw new Error(INVALID_CREDENTIALS_ERROR);
+    } catch (err) {
+      throw err;
+    }
+  },
   resetPass: async (_, { token, newPassword }) => {
     try {
       const { id } = await verifyJwt(token, EMAIL_JWT_SECRET);
 
-      if (!id) throw new Error('Reset email link is invalid');
+      if (!id) throw new Error("Reset email link is invalid");
 
       const user = await Auth.findById(id);
 
-      if (!user) throw new Error('This is user does not exist. Please try a different link');
+      if (!user)
+        throw new Error(
+          "This is user does not exist. Please try a different link"
+        );
 
       const hashedPassword = await bcrypt.hash(newPassword, 12);
 
@@ -55,5 +90,5 @@ module.exports = {
     } catch (err) {
       throw err;
     }
-  },
+  }
 };

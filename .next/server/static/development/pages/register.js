@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -400,7 +400,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function _templateObject() {
-  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  mutation Register($email: String!, $password: String!) {\n    signUp(email: $email, password: $password) {\n      email\n      password\n    }\n  }\n"]);
+  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    mutation Register($email: String!, $password: String!) {\n        signUp(email: $email, password: $password) {\n            email\n            password\n        }\n    }\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -1903,7 +1903,7 @@ var UNFILLED_FIELDS_ERROR = 'Error: you must complete all of the fields';
 
 /***/ }),
 
-/***/ 5:
+/***/ 4:
 /*!**********************************!*\
   !*** multi ./pages/register.tsx ***!
   \**********************************/
