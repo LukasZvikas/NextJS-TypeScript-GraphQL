@@ -23,8 +23,11 @@ var _jsxFileName = "/Users/lukas/Documents/GitHub/nextjs-graphql-typescript/comp
 var Layout = function Layout(_ref) {
   var children = _ref.children,
       _ref$title = _ref.title,
-      title = _ref$title === void 0 ? "This is the default title" : _ref$title;
+      title = _ref$title === void 0 ? 'This is the default title' : _ref$title;
   return react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
+    style: {
+      position: 'relative'
+    },
     __source: {
       fileName: _jsxFileName,
       lineNumber: 13
@@ -58,6 +61,9 @@ var Layout = function Layout(_ref) {
     },
     __self: this
   })), react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("header", {
+    style: {
+      position: 'absolute'
+    },
     __source: {
       fileName: _jsxFileName,
       lineNumber: 19
@@ -82,7 +88,7 @@ var Layout = function Layout(_ref) {
       lineNumber: 22
     },
     __self: this
-  }, "Home")), " ", "|", " ", react__WEBPACK_IMPORTED_MODULE_0__["createElement"](next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+  }, "Home")), ' ', "|", ' ', react__WEBPACK_IMPORTED_MODULE_0__["createElement"](next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
     href: "/about",
     __source: {
       fileName: _jsxFileName,
@@ -95,7 +101,7 @@ var Layout = function Layout(_ref) {
       lineNumber: 26
     },
     __self: this
-  }, "About")), " ", "|", " ", react__WEBPACK_IMPORTED_MODULE_0__["createElement"](next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+  }, "About")), ' ', "|", ' ', react__WEBPACK_IMPORTED_MODULE_0__["createElement"](next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
     href: "/initial-props",
     __source: {
       fileName: _jsxFileName,
@@ -109,6 +115,10 @@ var Layout = function Layout(_ref) {
     },
     __self: this
   }, "With Initial Props")))), children, react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("footer", {
+    style: {
+      position: 'absolute',
+      bottom: 0
+    },
     __source: {
       fileName: _jsxFileName,
       lineNumber: 35

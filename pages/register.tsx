@@ -1,4 +1,4 @@
-import React, { Component, ChangeEvent, Fragment } from 'react';
+import React, { Component, ChangeEvent } from 'react';
 import Layout from '../components/Layout';
 import { InputField } from '../components/InputField';
 import { REGISTER_MUTATION } from '../graphql/auth/register';
@@ -115,12 +115,11 @@ class Register extends Component<{}, RegisterState> {
                             return <LoadingBar />;
                         }
                         return (
-                            <Fragment>
-                                {error ? (
-                                    <Alert message={error.graphQLErrors[0].message} />
-                                ) : null}
-                                {errorMessage ? <Alert message={errorMessage} /> : null}
-                                <div>Register</div>
+                            <div className="form-container d-flex flex-column justify-content-center">
+                                {loading && <LoadingBar />}
+                                {error && <Alert message={error.graphQLErrors[0].message} />}
+                                {errorMessage && <Alert message={errorMessage} />}
+                                <div className="text-center heading heading-large">Register</div>
                                 <div className="row d-flex justify-content-center">
                                     <form
                                         className="d-flex flex-column col-10 col-sm-6 col-md-4"
@@ -153,7 +152,7 @@ class Register extends Component<{}, RegisterState> {
                                         <ButtonPrimary title={'Sign Up'} />
                                     </form>
                                 </div>
-                            </Fragment>
+                            </div>
                         );
                     }}
                 </Mutation>

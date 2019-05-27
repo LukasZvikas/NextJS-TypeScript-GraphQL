@@ -1,11 +1,9 @@
-import React, { Component, ChangeEvent, Fragment } from 'react';
+import React, { Component, ChangeEvent } from 'react';
 import Layout from '../components/Layout';
 import { InputField } from '../components/InputField';
 import { LOGIN_MUTATION } from '../graphql/auth/login';
 import { Mutation } from 'react-apollo';
-import { validateEmail } from '../utilities/emailValidation';
 import {
-    INVALID_EMAIL_ERROR,
     UNFILLED_FIELDS_ERROR
 } from '../utilities/errorMessages';
 import { Alert } from '../components/Alert';
@@ -77,19 +75,17 @@ class Login extends Component<{}, LoginState> {
             <Layout title={'Login'}>
                 <Mutation mutation={LOGIN_MUTATION} onError={() => { }}>
                     {(login: any, { loading, error, data }: any) => {
-                        if (loading) {
-                            return <LoadingBar />;
-                        }
-                        else if (!error && data) {
+
+                        if (!error && data) {
                             Router.push('/');
                         }
+
                         return (
-                            <Fragment>
-                                {error ? (
-                                    <Alert message={error.graphQLErrors[0].message} />
-                                ) : null}
-                                {errorMessage ? <Alert message={errorMessage} /> : null}
-                                <div>Login</div>
+                            <div className="form-container d-flex flex-column justify-content-center">
+                                {loading && <LoadingBar />}
+                                {error && <Alert message={error.graphQLErrors[0].message} />}
+                                {errorMessage && <Alert message={errorMessage} />}
+                                <div className="text-center heading heading-large">Login</div>
                                 <div className="row d-flex justify-content-center">
                                     <form
                                         className="d-flex flex-column col-10 col-sm-6 col-md-4"
@@ -114,8 +110,8 @@ class Login extends Component<{}, LoginState> {
                                         <ButtonPrimary title={'Login'} />
                                     </form>
                                 </div>
-                            </Fragment>
-                        );
+                            </div>
+                        )
                     }}
                 </Mutation>
             </Layout>

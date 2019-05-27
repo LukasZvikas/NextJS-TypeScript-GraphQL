@@ -1,0 +1,14 @@
+.heading {
+  color: $color-primary;
+  background: linear-gradient(
+    43deg,
+    $color-primary 34%,
+    $color-primary-dark 72%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.heading-large {
+  font-size: $font-large;
+}

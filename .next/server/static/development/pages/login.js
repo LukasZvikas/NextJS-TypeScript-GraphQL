@@ -248,8 +248,11 @@ var _jsxFileName = "/Users/lukas/Documents/GitHub/nextjs-graphql-typescript/comp
 var Layout = function Layout(_ref) {
   var children = _ref.children,
       _ref$title = _ref.title,
-      title = _ref$title === void 0 ? "This is the default title" : _ref$title;
+      title = _ref$title === void 0 ? 'This is the default title' : _ref$title;
   return react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
+    style: {
+      position: 'relative'
+    },
     __source: {
       fileName: _jsxFileName,
       lineNumber: 13
@@ -283,6 +286,9 @@ var Layout = function Layout(_ref) {
     },
     __self: this
   })), react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("header", {
+    style: {
+      position: 'absolute'
+    },
     __source: {
       fileName: _jsxFileName,
       lineNumber: 19
@@ -307,7 +313,7 @@ var Layout = function Layout(_ref) {
       lineNumber: 22
     },
     __self: this
-  }, "Home")), " ", "|", " ", react__WEBPACK_IMPORTED_MODULE_0__["createElement"](next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+  }, "Home")), ' ', "|", ' ', react__WEBPACK_IMPORTED_MODULE_0__["createElement"](next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
     href: "/about",
     __source: {
       fileName: _jsxFileName,
@@ -320,7 +326,7 @@ var Layout = function Layout(_ref) {
       lineNumber: 26
     },
     __self: this
-  }, "About")), " ", "|", " ", react__WEBPACK_IMPORTED_MODULE_0__["createElement"](next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+  }, "About")), ' ', "|", ' ', react__WEBPACK_IMPORTED_MODULE_0__["createElement"](next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
     href: "/initial-props",
     __source: {
       fileName: _jsxFileName,
@@ -334,6 +340,10 @@ var Layout = function Layout(_ref) {
     },
     __self: this
   }, "With Initial Props")))), children, react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("footer", {
+    style: {
+      position: 'absolute',
+      bottom: 0
+    },
     __source: {
       fileName: _jsxFileName,
       lineNumber: 35
@@ -374,6 +384,9 @@ var _jsxFileName = "/Users/lukas/Documents/GitHub/nextjs-graphql-typescript/comp
 
 var LoadingBar = function LoadingBar() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: {
+      fontSize: '100px'
+    },
     __source: {
       fileName: _jsxFileName,
       lineNumber: 3
@@ -1708,7 +1721,7 @@ function (_Component) {
         title: 'Login',
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 77
+          lineNumber: 75
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react_apollo__WEBPACK_IMPORTED_MODULE_11__["Mutation"], {
@@ -1716,7 +1729,7 @@ function (_Component) {
         onError: function onError() {},
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 78
+          lineNumber: 76
         },
         __self: this
       }, function (login, _ref) {
@@ -1724,49 +1737,49 @@ function (_Component) {
             error = _ref.error,
             data = _ref.data;
 
-        if (loading) {
-          return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_LoadingBar__WEBPACK_IMPORTED_MODULE_15__["LoadingBar"], {
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 81
-            },
-            __self: this
-          });
-        } else if (!error && data) {
+        if (!error && data) {
           next_router__WEBPACK_IMPORTED_MODULE_16___default.a.push('/');
         }
 
-        return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_7__["Fragment"], {
+        return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+          className: "form-container d-flex flex-column justify-content-center",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 84
+          },
+          __self: this
+        }, loading && react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_LoadingBar__WEBPACK_IMPORTED_MODULE_15__["LoadingBar"], {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 85
+          },
+          __self: this
+        }), error && react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_Alert__WEBPACK_IMPORTED_MODULE_13__["Alert"], {
+          message: error.graphQLErrors[0].message,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 86
+          },
+          __self: this
+        }), errorMessage && react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_Alert__WEBPACK_IMPORTED_MODULE_13__["Alert"], {
+          message: errorMessage,
           __source: {
             fileName: _jsxFileName,
             lineNumber: 87
           },
           __self: this
-        }, error ? react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_Alert__WEBPACK_IMPORTED_MODULE_13__["Alert"], {
-          message: error.graphQLErrors[0].message,
+        }), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+          className: "text-center heading heading-large",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 89
-          },
-          __self: this
-        }) : null, errorMessage ? react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_Alert__WEBPACK_IMPORTED_MODULE_13__["Alert"], {
-          message: errorMessage,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 91
-          },
-          __self: this
-        }) : null, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 92
+            lineNumber: 88
           },
           __self: this
         }, "Login"), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
           className: "row d-flex justify-content-center",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 93
+            lineNumber: 89
           },
           __self: this
         }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("form", {
@@ -1774,7 +1787,7 @@ function (_Component) {
           onSubmit: _this2.handleSubmit.bind(_this2, login),
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 94
+            lineNumber: 90
           },
           __self: this
         }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_InputField__WEBPACK_IMPORTED_MODULE_9__["InputField"], {
@@ -1785,7 +1798,7 @@ function (_Component) {
           },
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 98
+            lineNumber: 94
           },
           __self: this
         }), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_InputField__WEBPACK_IMPORTED_MODULE_9__["InputField"], {
@@ -1797,14 +1810,14 @@ function (_Component) {
           },
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 105
+            lineNumber: 101
           },
           __self: this
         }), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_ButtonPrimary__WEBPACK_IMPORTED_MODULE_14__["ButtonPrimary"], {
           title: 'Login',
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 114
+            lineNumber: 110
           },
           __self: this
         }))));

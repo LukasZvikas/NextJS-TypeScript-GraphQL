@@ -1,8 +1,17 @@
+.form-container {
+  height: 100vh;
+}
+
 .form__input {
   height: 40px;
   border-radius: 5px;
-  border: 1px solid $color-primary;
+  border: 1px solid $color-grey-light;
   padding: 0 10px;
+  font-size: inherit;
+}
+
+.form__input::placeholder {
+  color: $color-grey-light;
 }
 
 input[type="text"]:focus,
