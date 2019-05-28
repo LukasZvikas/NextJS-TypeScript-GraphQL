@@ -88,7 +88,7 @@ class Login extends Component<{}, LoginState> {
                                 <div className="text-center heading heading-large">Login</div>
                                 <div className="row d-flex justify-content-center">
                                     <form
-                                        className="d-flex flex-column col-10 col-sm-6 col-md-4"
+                                        className="d-flex flex-column col-10 col-sm-8 col-md-3"
                                         onSubmit={this.handleSubmit.bind(this, login)}
                                     >
                                         <InputField

@@ -13,8 +13,12 @@ const Auth = require("../../models/auth");
 const resetPassTemplate = require("../../utilities/emailTemplates/resetPass");
 
 module.exports = {
-  getUser: async (_, __, { token }) => {
-    if (!token) throw new Error(NO_TOKEN_ERROR);
+  getUser: async (_, __, { req }) => {
+    const cookie = req.headers.cookie;
+
+    if (req.headers && !cookie) throw new Error(NO_TOKEN_ERROR);
+
+    const token = cookie.split("=")[1];
 
     const userDetails = await verifyJwt(token, JWT_SECRET);
 

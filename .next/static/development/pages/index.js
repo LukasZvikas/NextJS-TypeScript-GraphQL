@@ -88,52 +88,65 @@ var Layout = function Layout(_ref) {
       lineNumber: 22
     },
     __self: this
-  }, "Home")), ' ', "|", ' ', react__WEBPACK_IMPORTED_MODULE_0__["createElement"](next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+  }, "Home")), react__WEBPACK_IMPORTED_MODULE_0__["createElement"](next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
     href: "/about",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 24
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("a", {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 25
     },
     __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("a", {
+  }, "About")), react__WEBPACK_IMPORTED_MODULE_0__["createElement"](next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    href: "/login",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 26
-    },
-    __self: this
-  }, "About")), ' ', "|", ' ', react__WEBPACK_IMPORTED_MODULE_0__["createElement"](next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-    href: "/initial-props",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 29
+      lineNumber: 27
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("a", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 28
+    },
+    __self: this
+  }, "Login")), react__WEBPACK_IMPORTED_MODULE_0__["createElement"](next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    href: "/register",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 30
     },
     __self: this
-  }, "With Initial Props")))), children, react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("footer", {
+  }, react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("a", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 31
+    },
+    __self: this
+  }, "Register")))), children, react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("footer", {
     style: {
       position: 'absolute',
       bottom: 0
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 35
+      lineNumber: 36
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("hr", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 36
+      lineNumber: 37
     },
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 37
+      lineNumber: 38
     },
     __self: this
   }, "I'm here to stay (Footer)")));
@@ -27718,7 +27731,7 @@ __webpack_require__.r(__webpack_exports__);
 var _jsxFileName = "/Users/lukas/Documents/GitHub/nextjs-graphql-typescript/pages/index.tsx";
 
 function _templateObject() {
-  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_1__["default"])(["\n                query {\n                  loginUser(email: \"lzvikas1@gmail.com\", password: \"1223\") {\n                    token\n                    userId\n                    email\n                  }\n                }"]);
+  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_1__["default"])(["\n                                    query {\n                                        getUser {\n                                            _id\n                                            email\n                                        }\n                                    }\n                                "]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -27774,6 +27787,9 @@ var IndexPage = function IndexPage() {
     __self: this
   }, function (client) {
     return react__WEBPACK_IMPORTED_MODULE_4__["createElement"]("button", {
+      style: {
+        margin: '100px'
+      },
       className: "btn btn-primary",
       onClick:
       /*#__PURE__*/
@@ -27814,7 +27830,7 @@ var IndexPage = function IndexPage() {
 
 /***/ }),
 
-/***/ 1:
+/***/ 3:
 /*!******************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2Flukas%2FDocuments%2FGitHub%2Fnextjs-graphql-typescript%2Fpages%2Findex.tsx ***!
   \******************************************************************************************************************************************************/
@@ -27837,5 +27853,5 @@ module.exports = dll_1aef2d0bbc0d334d831c;
 
 /***/ })
 
-},[[1,"static/runtime/webpack.js"]]]);
+},[[3,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=index.js.map

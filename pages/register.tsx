@@ -122,7 +122,7 @@ class Register extends Component<{}, RegisterState> {
                                 <div className="text-center heading heading-large">Register</div>
                                 <div className="row d-flex justify-content-center">
                                     <form
-                                        className="d-flex flex-column col-10 col-sm-6 col-md-4"
+                                        className="d-flex flex-column col-10 col-sm-6 col-md-3"
                                         onSubmit={this.handleSubmit.bind(this, register)}
                                     >
                                         <InputField

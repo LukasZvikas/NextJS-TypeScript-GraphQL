@@ -16,17 +16,18 @@ const IndexPage: React.FunctionComponent = () => {
             <ApolloConsumer>
                 {(client: any) => (
                     <button
+                        style={{ margin: '100px' }}
                         className="btn btn-primary"
                         onClick={async () => {
                             const response = await client.query({
                                 query: gql`
-                query {
-                  loginUser(email: "lzvikas1@gmail.com", password: "1223") {
-                    token
-                    userId
-                    email
-                  }
-                }`,
+                                    query {
+                                        getUser {
+                                            _id
+                                            email
+                                        }
+                                    }
+                                `,
                             });
                             console.log('res', response);
                         }}
