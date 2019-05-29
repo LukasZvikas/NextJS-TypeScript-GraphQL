@@ -1,7 +1,5 @@
 import * as React from 'react';
-// tslint:disable-next-line: no-implicit-dependencies
 import wait from 'waait';
-// tslint:disable-next-line: no-implicit-dependencies
 import { mount } from 'enzyme';
 import RegisterPage from '../../pages/register';
 import { InputField } from '../../components/InputField';
@@ -164,10 +162,6 @@ describe('Register page', () => {
     it(
       'renders Alert component with UNFILLED_FIELDS_ERROR if all fields are empty',
       async done => {
-
-        const registerUser = {
-          signUp: { email: 'test@gmail.com', password: 'password' }
-        };
 
         const mocks = [
           {

@@ -16,6 +16,8 @@ module.exports = {
   getUser: async (_, __, { req }) => {
     const cookie = req.headers.cookie;
 
+    console.log("cookie", cookie);
+
     if (req.headers && !cookie) throw new Error(NO_TOKEN_ERROR);
 
     const token = cookie.split("=")[1];
@@ -26,6 +28,7 @@ module.exports = {
 
     try {
       const user = await Auth.findById(userDetails.id);
+      console.log("USER", user);
       if (!user) {
         throw new Error(INVALID_CREDENTIALS_ERROR);
       } else {

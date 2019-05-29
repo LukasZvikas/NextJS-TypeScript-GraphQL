@@ -38,10 +38,10 @@ function create(initialState, _ref) {
   var authLink = Object(apollo_link_context__WEBPACK_IMPORTED_MODULE_2__["setContext"])(function (_, _ref2) {
     var headers = _ref2.headers;
     var token = getToken();
-    console.log("header", headers);
+    console.log("header", token);
     return {
       headers: Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, headers, {
-        cookie: token ? "qid=".concat(token) : "qid="
+        cookie: token ? token : ""
       })
     };
   }); // Check out https://github.com/zeit/next.js/pull/4611 if you want to use the AWSAppSyncClient
@@ -167,7 +167,7 @@ function parseCookies(req) {
                   Component = ctx.Component, router = ctx.router, _ctx$ctx = ctx.ctx, req = _ctx$ctx.req, res = _ctx$ctx.res;
                   apollo = Object(_initApollo__WEBPACK_IMPORTED_MODULE_16__["default"])({}, {
                     getToken: function getToken() {
-                      return parseCookies(req).qid;
+                      return req.headers.cookie;
                     }
                   });
                   ctx.ctx.apolloClient = apollo;
@@ -11000,6 +11000,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GraphQLError", function() { return GraphQLError; });
 /* harmony import */ var _printError__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./printError */ "./node_modules/graphql/error/printError.mjs");
 /* harmony import */ var _language_location__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../language/location */ "./node_modules/graphql/language/location.mjs");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
@@ -11062,7 +11064,15 @@ message, nodes, source, positions, path, originalError, extensions) {
     }, []);
   }
 
-  var _extensions = extensions || originalError && originalError.extensions;
+  var _extensions = extensions;
+
+  if (_extensions == null && originalError != null) {
+    var originalExtensions = originalError.extensions;
+
+    if (originalExtensions != null && _typeof(originalExtensions) === 'object') {
+      _extensions = originalExtensions;
+    }
+  }
 
   Object.defineProperties(this, {
     message: {
@@ -11144,6 +11154,7 @@ GraphQLError.prototype = Object.create(Error.prototype, {
   }
 });
 
+
 /***/ }),
 
 /***/ "./node_modules/graphql/error/formatError.mjs":
@@ -11189,6 +11200,7 @@ function formatError(error) {
   };
 }
 
+
 /***/ }),
 
 /***/ "./node_modules/graphql/error/index.mjs":
@@ -11223,6 +11235,7 @@ __webpack_require__.r(__webpack_exports__);
  *
  * 
  */
+
 
 
 
@@ -11266,6 +11279,7 @@ function locatedError(originalError, nodes, path) {
 
   return new _GraphQLError__WEBPACK_IMPORTED_MODULE_0__["GraphQLError"](originalError && originalError.message, originalError && originalError.nodes || nodes, originalError && originalError.source, originalError && originalError.positions, path, originalError);
 }
+
 
 /***/ }),
 
@@ -11418,6 +11432,7 @@ function lpad(len, str) {
   return whitespace(len - str.length) + str;
 }
 
+
 /***/ }),
 
 /***/ "./node_modules/graphql/error/syntaxError.mjs":
@@ -11448,6 +11463,7 @@ __webpack_require__.r(__webpack_exports__);
 function syntaxError(source, position, description) {
   return new _GraphQLError__WEBPACK_IMPORTED_MODULE_0__["GraphQLError"]("Syntax Error: ".concat(description), undefined, source, [position]);
 }
+
 
 /***/ }),
 
@@ -11486,6 +11502,7 @@ classObject) {
     classObject.prototype[_nodejsCustomInspectSymbol__WEBPACK_IMPORTED_MODULE_0__["default"]] = fn;
   }
 }
+
 
 /***/ }),
 
@@ -11530,6 +11547,7 @@ function defineToStringTag(classObject) {
     });
   }
 }
+
 
 /***/ }),
 
@@ -11591,7 +11609,7 @@ function formatObjectValue(value, previouslySeenValues) {
   if (value) {
     var customInspectFn = getCustomFn(value);
 
-    if (customInspectFn) {
+    if (customInspectFn !== undefined) {
       // $FlowFixMe(>=0.90.0)
       var customValue = customInspectFn.call(value); // check for infinite recursion
 
@@ -11678,6 +11696,7 @@ function getObjectTag(object) {
   return tag;
 }
 
+
 /***/ }),
 
 /***/ "./node_modules/graphql/jsutils/invariant.mjs":
@@ -11699,11 +11718,14 @@ __webpack_require__.r(__webpack_exports__);
  * 
  */
 function invariant(condition, message) {
+  var booleanCondition = Boolean(condition);
   /* istanbul ignore else */
-  if (!condition) {
+
+  if (!booleanCondition) {
     throw new Error(message);
   }
 }
+
 
 /***/ }),
 
@@ -11726,6 +11748,7 @@ __webpack_require__.r(__webpack_exports__);
  */
 var nodejsCustomInspectSymbol = typeof Symbol === 'function' ? Symbol.for('nodejs.util.inspect.custom') : undefined;
 /* harmony default export */ __webpack_exports__["default"] = (nodejsCustomInspectSymbol);
+
 
 /***/ }),
 
@@ -11846,6 +11869,7 @@ function printBlockString(value) {
   return '"""' + result.replace(/"""/g, '\\"""') + '"""';
 }
 
+
 /***/ }),
 
 /***/ "./node_modules/graphql/language/directiveLocation.mjs":
@@ -11896,6 +11920,7 @@ var DirectiveLocation = Object.freeze({
 /**
  * The enum type representing the directive location values.
  */
+
 
 /***/ }),
 
@@ -11980,6 +12005,7 @@ var Kind = Object.freeze({
 /**
  * The enum type representing the possible kind values of AST nodes.
  */
+
 
 /***/ }),
 
@@ -12521,16 +12547,18 @@ function readString(source, start, line, col, prev) {
           break;
 
         case 117:
-          // u
-          var charCode = uniCharCode(body.charCodeAt(position + 1), body.charCodeAt(position + 2), body.charCodeAt(position + 3), body.charCodeAt(position + 4));
+          {
+            // uXXXX
+            var charCode = uniCharCode(body.charCodeAt(position + 1), body.charCodeAt(position + 2), body.charCodeAt(position + 3), body.charCodeAt(position + 4));
 
-          if (charCode < 0) {
-            throw Object(_error__WEBPACK_IMPORTED_MODULE_1__["syntaxError"])(source, position, 'Invalid character escape sequence: ' + "\\u".concat(body.slice(position + 1, position + 5), "."));
+            if (charCode < 0) {
+              throw Object(_error__WEBPACK_IMPORTED_MODULE_1__["syntaxError"])(source, position, 'Invalid character escape sequence: ' + "\\u".concat(body.slice(position + 1, position + 5), "."));
+            }
+
+            value += String.fromCharCode(charCode);
+            position += 4;
+            break;
           }
-
-          value += String.fromCharCode(charCode);
-          position += 4;
-          break;
 
         default:
           throw Object(_error__WEBPACK_IMPORTED_MODULE_1__["syntaxError"])(source, position, "Invalid character escape sequence: \\".concat(String.fromCharCode(code), "."));
@@ -12651,6 +12679,7 @@ function readName(source, start, line, col, prev) {
   return new Tok(TokenKind.NAME, start, position, line, col, prev, body.slice(start, position));
 }
 
+
 /***/ }),
 
 /***/ "./node_modules/graphql/language/location.mjs":
@@ -12696,6 +12725,7 @@ function getLocation(source, position) {
     column: column
   };
 }
+
 
 /***/ }),
 
@@ -14075,7 +14105,7 @@ function parseDirectiveLocation(lexer) {
   var start = lexer.token;
   var name = parseName(lexer);
 
-  if (_directiveLocation__WEBPACK_IMPORTED_MODULE_6__["DirectiveLocation"].hasOwnProperty(name.value)) {
+  if (_directiveLocation__WEBPACK_IMPORTED_MODULE_6__["DirectiveLocation"][name.value] !== undefined) {
     return name;
   }
 
@@ -14226,6 +14256,7 @@ function many(lexer, openKind, parseFn, closeKind) {
 
   return nodes;
 }
+
 
 /***/ }),
 
@@ -14549,6 +14580,7 @@ function hasMultilineItems(maybeArray) {
   return maybeArray && maybeArray.some(isMultiline);
 }
 
+
 /***/ }),
 
 /***/ "./node_modules/graphql/language/source.mjs":
@@ -14594,6 +14626,7 @@ var Source = function Source(body, name, locationOffset) {
 }; // Conditionally apply `[Symbol.toStringTag]` if `Symbol`s are supported
 
 Object(_jsutils_defineToStringTag__WEBPACK_IMPORTED_MODULE_1__["default"])(Source);
+
 
 /***/ }),
 
@@ -15043,6 +15076,7 @@ function getVisitFn(visitor, kind, isLeaving) {
     }
   }
 }
+
 
 /***/ }),
 

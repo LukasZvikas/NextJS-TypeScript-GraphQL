@@ -134,10 +134,10 @@ function create(initialState, _ref) {
   var authLink = Object(apollo_link_context__WEBPACK_IMPORTED_MODULE_2__["setContext"])(function (_, _ref2) {
     var headers = _ref2.headers;
     var token = getToken();
-    console.log("header", headers);
+    console.log("header", token);
     return {
       headers: Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, headers, {
-        cookie: token ? "qid=".concat(token) : "qid="
+        cookie: token ? token : ""
       })
     };
   }); // Check out https://github.com/zeit/next.js/pull/4611 if you want to use the AWSAppSyncClient
@@ -263,7 +263,7 @@ function parseCookies(req) {
                   Component = ctx.Component, router = ctx.router, _ctx$ctx = ctx.ctx, req = _ctx$ctx.req, res = _ctx$ctx.res;
                   apollo = Object(_initApollo__WEBPACK_IMPORTED_MODULE_16__["default"])({}, {
                     getToken: function getToken() {
-                      return parseCookies(req).qid;
+                      return req.headers.cookie;
                     }
                   });
                   ctx.ctx.apolloClient = apollo;

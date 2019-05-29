@@ -27,11 +27,11 @@ function create(initialState: any, { getToken }: Options) {
 
   const authLink = setContext((_, { headers }) => {
     const token = getToken();
-    console.log("header", headers);
+    console.log("header", token);
     return {
       headers: {
         ...headers,
-        cookie: token ? `qid=${token}` : "qid="
+        cookie: token ? token : ""
       }
     };
   });

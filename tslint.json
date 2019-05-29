@@ -18,7 +18,8 @@
     "no-trailing-whitespace": [true, "ignore-jsdoc"],
     "whitespace": [true, "check-branch", "check-operator", "check-typecast"],
     "quotemark": [true, "single", "jsx-double"],
-    "jsx-no-lambda": false
+    "jsx-no-lambda": false,
+    "no-implicit-dependencies": false
   },
   "rulesDirectory": []
 }

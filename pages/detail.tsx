@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { NextPageContext } from 'next';
 import Layout from '../components/Layout';
 import { User } from '../interfaces';
-import { findData } from '../utils/sample-api';
 import ListDetail from '../components/ListDetail';
+import { withAuth } from '../components/WithAuth';
 
 interface Props {
     item?: User;
@@ -11,29 +10,8 @@ interface Props {
 }
 
 class InitialPropsDetail extends React.Component<Props> {
-    static getInitialProps = async ({ query }: NextPageContext) => {
-        try {
-            const { id } = query;
-            const item = await findData(Array.isArray(id) ? id[0] : id);
-            return { item };
-        } catch (err) {
-            return { errors: err.message };
-        }
-    }
-
     render() {
-        const { item, errors } = this.props;
-
-        if (errors) {
-            return (
-                <Layout title={'Error | Next.js + TypeScript Example'}>
-                    <p>
-                        <span style={{ color: 'red' }}>Error:</span> {errors}
-                    </p>
-                </Layout>
-            );
-        }
-
+        const { item } = this.props;
         return (
             <Layout
                 title={`${item ? item.name : 'Detail'} | Next.js + TypeScript Example`}
@@ -44,4 +22,4 @@ class InitialPropsDetail extends React.Component<Props> {
     }
 }
 
-export default InitialPropsDetail;
+export default withAuth(InitialPropsDetail);
