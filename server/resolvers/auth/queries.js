@@ -10,6 +10,7 @@ const {
   INVALID_EMAIL_ERROR
 } = require("../../utilities/errorTypes");
 const Auth = require("../../models/auth");
+const { AuthenticationError } = require("apollo-server-express");
 const resetPassTemplate = require("../../utilities/emailTemplates/resetPass");
 
 module.exports = {
@@ -18,7 +19,7 @@ module.exports = {
 
     console.log("cookie", cookie);
 
-    if (req.headers && !cookie) throw new Error(NO_TOKEN_ERROR);
+    if (req.headers && !cookie) throw new AuthenticationError(NO_TOKEN_ERROR);
 
     const token = cookie.split("=")[1];
 

@@ -13,6 +13,8 @@ import {
 import { Alert } from '../components/Alert';
 import { ButtonPrimary } from '../components/ButtonPrimary';
 import { LoadingBar } from '../components/LoadingBar';
+import { GET_USER_QUERY } from '../graphql/auth/getUser';
+import redirect from '../lib/redirect';
 
 interface RegisterState {
     email: string;
@@ -21,7 +23,29 @@ interface RegisterState {
     errorMessage: string;
 }
 
-class Register extends Component<{}, RegisterState> {
+interface RegisterProps {
+    user: {
+        email: string;
+        _id: string;
+    }
+}
+
+class Register extends Component<RegisterProps, RegisterState> {
+
+    static async getInitialProps(context: any) {
+        return context.apolloClient.query({
+            query: GET_USER_QUERY
+        }).then((res: any) => {
+            if (res.data.getUser) {
+                redirect(context, '/');
+                return { user: res.data.getUser };
+            }
+        })
+            .catch((e: any) => {
+                console.log('error is', e)
+                return { user: {} };
+            });
+    };
 
     state = {
         email: '',
@@ -106,7 +130,7 @@ class Register extends Component<{}, RegisterState> {
 
     render() {
         const { errorMessage } = this.state;
-
+        console.log('this', this.props)
         return (
             <Layout title={'Register'}>
                 <Mutation mutation={REGISTER_MUTATION} onError={() => { }}>

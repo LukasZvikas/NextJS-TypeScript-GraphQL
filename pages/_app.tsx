@@ -6,7 +6,6 @@ import Head from 'next/head';
 import '../styles/main.scss';
 
 class MyApp extends App<any> {
-    // eslint-disable-next-line @typescript-eslint/explicit-member-accessibility
     render() {
         const { Component, pageProps, apolloClient } = this.props;
         return (

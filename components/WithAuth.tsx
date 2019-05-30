@@ -5,19 +5,20 @@ import redirect from '../lib/redirect';
 export const withAuth = <T extends object>(C: ComponentClass<T>) => {
     return class IsAuth extends Component<T> {
         static async getInitialProps(context: any) {
-            try {
-                const response = await context.apolloClient.query({
-                    query: GET_USER_QUERY
+            return context.apolloClient.query({
+                query: GET_USER_QUERY
+            }).then((res: any) => {
+                return { user: res.data.getUser };
+            })
+                .catch((e: any) => {
+                    console.log('error', e);
+                    redirect(context, '/login');
+                    return { user: {} };
                 });
-                return { user: response.data.getUser }
-            }
-            catch (err) {
-                redirect(context, '/');
-                return {};
-            }
         }
+
         render() {
             return <C {...this.props} />
         }
     }
-}
+};

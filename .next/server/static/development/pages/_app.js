@@ -134,7 +134,6 @@ function create(initialState, _ref) {
   var authLink = Object(apollo_link_context__WEBPACK_IMPORTED_MODULE_2__["setContext"])(function (_, _ref2) {
     var headers = _ref2.headers;
     var token = getToken();
-    console.log("header", token);
     return {
       headers: Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, headers, {
         cookie: token ? token : ""
@@ -203,18 +202,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/createClass */ "./node_modules/@babel/runtime-corejs2/helpers/esm/createClass.js");
 /* harmony import */ var _babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/inherits */ "./node_modules/@babel/runtime-corejs2/helpers/esm/inherits.js");
 /* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
-/* harmony import */ var cookie__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! cookie */ "cookie");
-/* harmony import */ var cookie__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(cookie__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! next/head */ "next/head");
-/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! prop-types */ "prop-types");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_13__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_14__);
-/* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-apollo */ "react-apollo");
-/* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(react_apollo__WEBPACK_IMPORTED_MODULE_15__);
-/* harmony import */ var _initApollo__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./initApollo */ "./lib/initApollo.ts");
-/* harmony import */ var _isBrowser__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./isBrowser */ "./lib/isBrowser.ts");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! prop-types */ "prop-types");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-apollo */ "react-apollo");
+/* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(react_apollo__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! next/head */ "next/head");
+/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var _initApollo__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./initApollo */ "./lib/initApollo.ts");
+/* harmony import */ var _isBrowser__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./isBrowser */ "./lib/isBrowser.ts");
 
 
 
@@ -234,10 +231,8 @@ var _jsxFileName = "/Users/lukas/Documents/GitHub/nextjs-graphql-typescript/lib/
 
 
 
-
 function parseCookies(req) {
-  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  return cookie__WEBPACK_IMPORTED_MODULE_11___default.a.parse(req ? req.headers.cookie || '' : document.cookie, options);
+  return req ? req.headers.cookie : '';
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (function (App) {
@@ -261,9 +256,9 @@ function parseCookies(req) {
               switch (_context.prev = _context.next) {
                 case 0:
                   Component = ctx.Component, router = ctx.router, _ctx$ctx = ctx.ctx, req = _ctx$ctx.req, res = _ctx$ctx.res;
-                  apollo = Object(_initApollo__WEBPACK_IMPORTED_MODULE_16__["default"])({}, {
+                  apollo = Object(_initApollo__WEBPACK_IMPORTED_MODULE_15__["default"])({}, {
                     getToken: function getToken() {
-                      return req.headers.cookie;
+                      return parseCookies(req);
                     }
                   });
                   ctx.ctx.apolloClient = apollo;
@@ -289,26 +284,26 @@ function parseCookies(req) {
                   return _context.abrupt("return", {});
 
                 case 10:
-                  if (_isBrowser__WEBPACK_IMPORTED_MODULE_17__["isBrowser"]) {
-                    _context.next = 20;
+                  if (_isBrowser__WEBPACK_IMPORTED_MODULE_16__["isBrowser"]) {
+                    _context.next = 21;
                     break;
                   }
 
                   _context.prev = 11;
                   _context.next = 14;
-                  return Object(react_apollo__WEBPACK_IMPORTED_MODULE_15__["getDataFromTree"])(react__WEBPACK_IMPORTED_MODULE_14___default.a.createElement(App, Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_2__["default"])({}, appProps, {
+                  return Object(react_apollo__WEBPACK_IMPORTED_MODULE_13__["getDataFromTree"])(react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(App, Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_2__["default"])({}, appProps, {
                     Component: Component,
                     router: router,
                     apolloClient: apollo,
                     __source: {
                       fileName: _jsxFileName,
-                      lineNumber: 57
+                      lineNumber: 54
                     },
                     __self: this
                   })));
 
                 case 14:
-                  _context.next = 19;
+                  _context.next = 20;
                   break;
 
                 case 16:
@@ -317,21 +312,22 @@ function parseCookies(req) {
                   // Prevent Apollo Client GraphQL errors from crashing SSR.
                   // Handle them in components via the data.error prop:
                   // https://www.apollographql.com/docs/react/api/react-apollo.html#graphql-query-data-error
+                  console.log('please');
                   console.error('Error while running `getDataFromTree`', _context.t0);
 
-                case 19:
+                case 20:
                   // getDataFromTree does not call componentWillUnmount
                   // head side effect therefore need to be cleared manually
-                  next_head__WEBPACK_IMPORTED_MODULE_12___default.a.rewind();
+                  next_head__WEBPACK_IMPORTED_MODULE_14___default.a.rewind();
 
-                case 20:
+                case 21:
                   // Extract query data from the Apollo's store
                   apolloState = apollo.cache.extract();
                   return _context.abrupt("return", Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__["default"])({}, appProps, {
                     apolloState: apolloState
                   }));
 
-                case 22:
+                case 23:
                 case "end":
                   return _context.stop();
               }
@@ -357,9 +353,9 @@ function parseCookies(req) {
 
       Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_10__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7__["default"])(_this), "apolloClient", void 0);
 
-      _this.apolloClient = Object(_initApollo__WEBPACK_IMPORTED_MODULE_16__["default"])(props.apolloState, {
+      _this.apolloClient = Object(_initApollo__WEBPACK_IMPORTED_MODULE_15__["default"])(props.apolloState, {
         getToken: function getToken() {
-          return parseCookies().token;
+          return parseCookies();
         }
       });
       return _this;
@@ -368,11 +364,11 @@ function parseCookies(req) {
     Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_8__["default"])(WithData, [{
       key: "render",
       value: function render() {
-        return react__WEBPACK_IMPORTED_MODULE_14___default.a.createElement(App, Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_2__["default"])({}, this.props, {
+        return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(App, Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_2__["default"])({}, this.props, {
           apolloClient: this.apolloClient,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 99
+            lineNumber: 96
           },
           __self: this
         }));
@@ -380,8 +376,8 @@ function parseCookies(req) {
     }]);
 
     return WithData;
-  }(react__WEBPACK_IMPORTED_MODULE_14___default.a.Component), Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_10__["default"])(_class, "displayName", "WithData(".concat(App.displayName, ")")), Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_10__["default"])(_class, "propTypes", {
-    apolloState: prop_types__WEBPACK_IMPORTED_MODULE_13___default.a.object.isRequired
+  }(react__WEBPACK_IMPORTED_MODULE_11___default.a.Component), Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_10__["default"])(_class, "displayName", "WithData(".concat(App.displayName, ")")), Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_10__["default"])(_class, "propTypes", {
+    apolloState: prop_types__WEBPACK_IMPORTED_MODULE_12___default.a.object.isRequired
   }), _temp;
 });
 
@@ -1555,7 +1551,6 @@ function (_App) {
 
   Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_2__["default"])(MyApp, [{
     key: "render",
-    // eslint-disable-next-line @typescript-eslint/explicit-member-accessibility
     value: function render() {
       var _this$props = this.props,
           Component = _this$props.Component,
@@ -1564,13 +1559,13 @@ function (_App) {
       return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(next_app__WEBPACK_IMPORTED_MODULE_6__["Container"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 13
+          lineNumber: 12
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(next_head__WEBPACK_IMPORTED_MODULE_10___default.a, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 14
+          lineNumber: 13
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("link", {
@@ -1578,20 +1573,20 @@ function (_App) {
         href: "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 15
+          lineNumber: 14
         },
         __self: this
       })), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react_apollo__WEBPACK_IMPORTED_MODULE_8__["ApolloProvider"], {
         client: apolloClient,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 20
+          lineNumber: 19
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(Component, Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, pageProps, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 21
+          lineNumber: 20
         },
         __self: this
       }))));
@@ -1658,17 +1653,6 @@ module.exports = require("apollo-link-context");
 /***/ (function(module, exports) {
 
 module.exports = require("apollo-link-http");
-
-/***/ }),
-
-/***/ "cookie":
-/*!*************************!*\
-  !*** external "cookie" ***!
-  \*************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("cookie");
 
 /***/ }),
 
