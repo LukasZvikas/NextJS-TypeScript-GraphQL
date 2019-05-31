@@ -2,7 +2,7 @@ import * as React from 'react';
 import Layout from '../components/Layout';
 import { User } from '../interfaces';
 import ListDetail from '../components/ListDetail';
-import { withAuth } from '../components/WithAuth';
+import { withAuth } from '../components/withAuth';
 
 interface Props {
     item?: User;

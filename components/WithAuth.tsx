@@ -2,6 +2,8 @@ import React, { ComponentClass, Component } from 'react';
 import { GET_USER_QUERY } from '../graphql/auth/getUser';
 import redirect from '../lib/redirect';
 
+// For all components, but Login and SignUp pages
+
 export const withAuth = <T extends object>(C: ComponentClass<T>) => {
     return class IsAuth extends Component<T> {
         static async getInitialProps(context: any) {

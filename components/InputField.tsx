@@ -1,25 +1,28 @@
 import React, { Fragment, ChangeEvent } from 'react';
 
 interface InputFieldProps {
+    name: string;
     type: string;
     labelTitle: string;
     placeholderTitle: string;
-    onTextChange: (e: ChangeEvent<HTMLInputElement>) => void;
+    onInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const InputField = ({
+    name,
     type,
     labelTitle,
     placeholderTitle,
-    onTextChange
+    onInputChange
 }: InputFieldProps) => {
     return (
         <Fragment>
             <label className="mt-3">{labelTitle}</label>
             <input
+                name={name}
                 type={type}
                 id={labelTitle}
-                onChange={onTextChange}
+                onChange={onInputChange}
                 className="form__input"
                 placeholder={placeholderTitle} />
         </Fragment>

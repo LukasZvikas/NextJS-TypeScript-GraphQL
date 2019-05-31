@@ -27864,7 +27864,7 @@ var IndexPage = function IndexPage() {
 
 /***/ }),
 
-/***/ 1:
+/***/ 2:
 /*!******************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2Flukas%2FDocuments%2FGitHub%2Fnextjs-graphql-typescript%2Fpages%2Findex.tsx ***!
   \******************************************************************************************************************************************************/
@@ -27887,5 +27887,5 @@ module.exports = dll_1aef2d0bbc0d334d831c;
 
 /***/ })
 
-},[[1,"static/runtime/webpack.js"]]]);
+},[[2,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=index.js.map
