@@ -25,23 +25,29 @@ class AuthRender extends Component<AuthProps, AuthState> {
         {
             auth,
             mutate,
-            validateInputs
+            validateInputs,
+            setErrorMessage
         }: {
             auth: AuthType;
             mutate: any;
-            validateInputs: (auth: AuthType) => string | null
+            validateInputs: (auth: AuthType) => string | null,
+            setErrorMessage: (message: string) => void
         },
         event: FormEvent<EventTarget>
     ) {
         event.preventDefault();
 
         const isInvalidInputs = validateInputs(auth);
+
         if (isInvalidInputs) {
-            this.setState({ errorMessage: isInvalidInputs });
+            setErrorMessage(isInvalidInputs);
             return;
         }
+        mutate({ variables: { email: auth.email, password: auth.password } });
+    }
 
-        mutate({ variables: { ...auth } });
+    setErrorMessage(message: string): void {
+        this.setState({ errorMessage: message });
     }
 
     clearErrorMessage() {
@@ -62,11 +68,13 @@ class AuthRender extends Component<AuthProps, AuthState> {
 
     render() {
         const { errorMessage, auth } = this.state;
+
         return this.props.children({
             auth,
             handleSubmit: this.handleSubmit,
             onInputChange: this.onInputChange.bind(this, errorMessage),
-            errorMessage
+            errorMessage,
+            setErrorMessage: this.setErrorMessage.bind(this)
         });
     }
 }

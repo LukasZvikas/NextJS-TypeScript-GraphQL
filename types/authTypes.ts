@@ -13,13 +13,16 @@ export interface InjectedProps {
       auth,
       mutate,
       validateInputs,
+      setErrorMessage,
     }: {
       auth: AuthType
       mutate: any
       validateInputs: (auth: AuthType) => string | null
+      setErrorMessage: (message: string) => void
     },
     event: FormEvent<EventTarget>
   ) => void
   errorMessage: string
   auth: AuthType
+  setErrorMessage: (message: string) => void
 }

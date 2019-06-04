@@ -1,6 +1,6 @@
 import * as React from 'react';
 import wait from 'waait';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import RegisterPage from '../../pages/register';
 import { InputField } from '../../components/InputField';
 import { ButtonPrimary } from '../../components/ButtonPrimary';
@@ -16,30 +16,6 @@ import {
 }
   from '../../utilities/errorMessages';
 
-const populateInputFields = (wrap: any) => {
-  const emailInput = wrap.find('input[id="Email"]');
-  const passInput = wrap.find('input[id="Password"]');
-  const passConfirmInput = wrap.find('input[id="Confirm password"]');
-
-  emailInput.simulate('change', {
-    target: {
-      value: 'test@gmail.com'
-    }
-  });
-
-  passInput.simulate('change', {
-    target: {
-      value: 'password'
-    }
-  });
-
-  passConfirmInput.simulate('change', {
-    target: {
-      value: 'password'
-    }
-  });
-};
-
 describe('Register page', () => {
   let wrap: any;
 
@@ -49,37 +25,23 @@ describe('Register page', () => {
 
   describe('Methods', () => {
     beforeEach(() => {
-      wrap = mount(
-        <MockedProvider mocks={[]}>
-          <RegisterPage />
-        </MockedProvider>
-      );
-    });
-    it('validatePasswordLength returns true if password length is greater than 4', () => {
-      expect(wrap.find(RegisterPage).instance().validatePasswordLength('password')).toBe(true);
-    });
-    it('validatePasswordLength returns false if password length is less than 4', () => {
-      expect(wrap.find(RegisterPage).instance().validatePasswordLength('pass')).toBe(false);
-    });
-    it('validatePasswordMatch returns true if password match', () => {
-      expect(wrap.find(RegisterPage).instance().validatePasswordMatch('password', 'password')).toBe(true);
-    });
-    it('validatePasswordMatch returns false if password do not match', () => {
-      expect(wrap.find(RegisterPage).instance().validatePasswordMatch('password', 'pass')).toBe(false);
+      wrap = shallow(
+        <RegisterPage />
+      ).dive();
     });
     it('validateInputs returns null if all inputs are valid', () => {
-      expect(wrap.find(RegisterPage).instance().validateInputs('email@email.com', 'password', 'password')).toBe(null);
+      expect(wrap.instance().validateInputs({ email: 'email@email.com', password: 'password', passwordConfirm: 'password' })).toBe(null);
     });
     it('validateInputs returns INVALID_EMAIL_ERROR if email is not in correct form', () => {
-      expect(wrap.find(RegisterPage).instance().validateInputs('email@email', 'password', 'pass')).toBe(INVALID_EMAIL_ERROR);
-      expect(wrap.find(RegisterPage).instance().validateInputs('email', 'password', 'pass')).toBe(INVALID_EMAIL_ERROR);
-      expect(wrap.find(RegisterPage).instance().validateInputs('email@email.', 'password', 'pass')).toBe(INVALID_EMAIL_ERROR);
+      expect(wrap.instance().validateInputs({ email: 'email@email', password: 'password', passwordConfirm: 'pass' })).toBe(INVALID_EMAIL_ERROR);
+      expect(wrap.instance().validateInputs({ email: 'email', password: 'password', passwordConfirm: 'pass' })).toBe(INVALID_EMAIL_ERROR);
+      expect(wrap.instance().validateInputs({ email: 'email@email.', password: 'password', passwordConfirm: 'pass' })).toBe(INVALID_EMAIL_ERROR);
     });
     it('validateInputs returns PASS_MISMATCH_ERROR if password do not match', () => {
-      expect(wrap.find(RegisterPage).instance().validateInputs('email@email.com', 'password', 'pass')).toBe(PASS_MISMATCH_ERROR);
+      expect(wrap.instance().validateInputs({ email: 'email@email.com', password: 'password', passwordConfirm: 'pass' })).toBe(PASS_MISMATCH_ERROR);
     });
     it('validateInputs returns PASS_LENGTH_ERROR if password length is less than 5', () => {
-      expect(wrap.find(RegisterPage).instance().validateInputs('email@email.com', 'pass', 'pass')).toBe(PASS_LENGTH_ERROR);
+      expect(wrap.instance().validateInputs({ email: 'email@email.com', password: 'pass', passwordConfirm: 'pass' })).toBe(PASS_LENGTH_ERROR);
     });
   });
 
@@ -100,33 +62,6 @@ describe('Register page', () => {
     });
   });
   describe('After register mutation triggered', () => {
-    it('renders loading state initially', done => {
-
-      const mocks = [
-        {
-          request: {
-            query: REGISTER_MUTATION,
-            variables: { email: 'test@gmail.com', password: 'password' }
-          },
-          result: { data: registerUser }
-        }
-      ];
-
-      wrap = mount(
-        <MockedProvider mocks={mocks} addTypename={false}>
-          <RegisterPage />
-        </MockedProvider>
-      );
-
-      populateInputFields(wrap);
-
-      wrap.find('form').simulate('submit');
-
-      expect(wrap.find(LoadingBar)).toHaveLength(1);
-
-      done();
-    });
-
     it('renders Alert component if error state is present', async done => {
       const mocks = [
         {
@@ -146,8 +81,6 @@ describe('Register page', () => {
         </MockedProvider>
       );
 
-      populateInputFields(wrap);
-
       wrap.find('form').simulate('submit');
 
       await wait(0);
@@ -159,9 +92,57 @@ describe('Register page', () => {
       done();
     });
 
+    it('renders loading state initially', () => {
+
+      const mocks = [
+        {
+          request: {
+            query: REGISTER_MUTATION,
+            variables: { email: 'test@gmail.com', password: 'password' }
+          },
+          result: { data: registerUser }
+        }
+      ];
+
+      wrap = mount(
+        <MockedProvider mocks={mocks} addTypename={false}>
+          <RegisterPage />
+        </MockedProvider>
+      );
+
+      const emailInput = wrap.find('input[id="Email"]');
+      const passInput = wrap.find('input[id="Password"]');
+      const passConfirmInput = wrap.find('input[id="Confirm password"]');
+
+      emailInput.simulate('change', {
+        target: {
+          value: 'test@gmail.com',
+          name: 'email'
+        }
+      });
+
+      passInput.simulate('change', {
+        target: {
+          value: 'password',
+          name: 'password'
+        }
+      });
+
+      passConfirmInput.simulate('change', {
+        target: {
+          value: 'password',
+          name: 'passwordConfirm'
+        }
+      });
+
+      wrap.find('form').simulate('submit');
+
+      expect(wrap.find(LoadingBar)).toHaveLength(1);
+    });
+
     it(
       'renders Alert component with UNFILLED_FIELDS_ERROR if all fields are empty',
-      async done => {
+      async () => {
 
         const mocks = [
           {
@@ -186,8 +167,6 @@ describe('Register page', () => {
         wrap.update();
 
         expect(wrap.find(Alert).props().message).toBe(UNFILLED_FIELDS_ERROR);
-
-        done();
       });
   });
 });

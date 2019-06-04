@@ -3,7 +3,12 @@ import Layout from '../components/Layout';
 import { InputField } from '../components/InputField';
 import { REGISTER_MUTATION } from '../graphql/auth/register';
 import { Mutation } from 'react-apollo';
-import { validateEmail } from '../utilities/emailValidation';
+import {
+    validateEmail,
+    validatePasswordLength,
+    validatePasswordMatch
+}
+    from '../utilities/authValidation';
 import {
     PASS_MISMATCH_ERROR,
     PASS_LENGTH_ERROR,
@@ -17,21 +22,7 @@ import AuthRender from '../components/AuthRender';
 import { withAuthPages } from '../components/withAuthPages';
 import { InjectedProps } from '../types/authTypes';
 
-class Register extends Component<InjectedProps, {}> {
-
-    validatePasswordMatch(passwordOne: string, passwordTwo: string): boolean {
-        if (passwordOne !== passwordTwo) {
-            return false;
-        }
-        return true;
-    }
-
-    validatePasswordLength(password: string): boolean {
-        if (password.length < 5) {
-            return false;
-        }
-        return true;
-    }
+class Register extends Component {
 
     validateInputs(
         { email, password, passwordConfirm }:
@@ -42,10 +33,10 @@ class Register extends Component<InjectedProps, {}> {
         } else if (!validateEmail(email)) {
             return INVALID_EMAIL_ERROR;
         }
-        else if (!this.validatePasswordLength(password)) {
+        else if (!validatePasswordLength(password)) {
             return PASS_LENGTH_ERROR;
         }
-        else if (!this.validatePasswordMatch(password, passwordConfirm)) {
+        else if (!validatePasswordMatch(password, passwordConfirm)) {
             return PASS_MISMATCH_ERROR;
         }
         return null;
@@ -54,7 +45,7 @@ class Register extends Component<InjectedProps, {}> {
     render() {
         return (
             <AuthRender>
-                {({ handleSubmit, onInputChange, errorMessage, auth }: InjectedProps) => {
+                {({ handleSubmit, onInputChange, errorMessage, auth, setErrorMessage }: InjectedProps) => {
                     return (
                         <Layout title={'Register'}>
                             <Mutation mutation={REGISTER_MUTATION} onError={() => { }}>
@@ -71,7 +62,12 @@ class Register extends Component<InjectedProps, {}> {
                                             <div className="row d-flex justify-content-center">
                                                 <form
                                                     className="d-flex flex-column col-10 col-sm-6 col-md-3"
-                                                    onSubmit={handleSubmit.bind(this, { auth, mutate, validateInputs: this.validateInputs })}
+                                                    onSubmit={handleSubmit.bind(this, {
+                                                        auth,
+                                                        mutate,
+                                                        validateInputs: this.validateInputs,
+                                                        setErrorMessage
+                                                    })}
                                                 >
                                                     <InputField
                                                         name={'email'}

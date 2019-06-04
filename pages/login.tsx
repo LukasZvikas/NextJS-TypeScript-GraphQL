@@ -12,7 +12,7 @@ import Router from 'next/router';
 import { withAuthPages } from '../components/withAuthPages';
 import { InjectedProps } from '../types/authTypes';
 
-class Login extends Component<InjectedProps, {}> {
+class Login extends Component {
     validateInputs(
         { email, password }: { email?: string, password?: string }
     ): string | null {
@@ -24,9 +24,8 @@ class Login extends Component<InjectedProps, {}> {
 
     render() {
         return (
-
             <AuthRender>
-                {({ handleSubmit, onInputChange, errorMessage, auth }: InjectedProps) => {
+                {({ handleSubmit, onInputChange, errorMessage, auth, setErrorMessage }: InjectedProps) => {
                     return (
                         <Layout title={'Login'}>
                             <Mutation mutation={LOGIN_MUTATION} onError={() => { }}>
@@ -44,7 +43,14 @@ class Login extends Component<InjectedProps, {}> {
                                             <div className="row d-flex justify-content-center">
                                                 <form
                                                     className="d-flex flex-column col-10 col-sm-8 col-md-3"
-                                                    onSubmit={handleSubmit.bind(this, { auth, mutate, validateInputs: this.validateInputs })}
+                                                    onSubmit={handleSubmit.bind(
+                                                        this, {
+                                                            auth,
+                                                            mutate,
+                                                            validateInputs: this.validateInputs,
+                                                            setErrorMessage
+                                                        }
+                                                    )}
                                                 >
                                                     <InputField
                                                         name={'email'}

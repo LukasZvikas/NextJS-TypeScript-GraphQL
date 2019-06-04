@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -199,19 +199,29 @@ function (_Component) {
     value: function handleSubmit(_ref, event) {
       var auth = _ref.auth,
           mutate = _ref.mutate,
-          validateInputs = _ref.validateInputs;
+          validateInputs = _ref.validateInputs,
+          setErrorMessage = _ref.setErrorMessage;
+      console.log('wtf');
       event.preventDefault();
+      console.log('auth is this', auth);
       var isInvalidInputs = validateInputs(auth);
+      console.log('osvaa', isInvalidInputs);
 
       if (isInvalidInputs) {
-        this.setState({
-          errorMessage: isInvalidInputs
-        });
+        setErrorMessage(isInvalidInputs);
         return;
       }
 
+      console.log('auth is this', auth);
       mutate({
         variables: Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, auth)
+      });
+    }
+  }, {
+    key: "setErrorMessage",
+    value: function setErrorMessage(message) {
+      this.setState({
+        errorMessage: message
       });
     }
   }, {
@@ -240,11 +250,13 @@ function (_Component) {
       var _this$state = this.state,
           errorMessage = _this$state.errorMessage,
           auth = _this$state.auth;
+      console.log('error', this.state);
       return this.props.children({
         auth: auth,
         handleSubmit: this.handleSubmit,
         onInputChange: this.onInputChange.bind(this, errorMessage),
-        errorMessage: errorMessage
+        errorMessage: errorMessage,
+        setErrorMessage: this.setErrorMessage.bind(this)
       });
     }
   }]);
@@ -2120,19 +2132,20 @@ function (_Component) {
       return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_components_AuthRender__WEBPACK_IMPORTED_MODULE_14__["default"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 28
+          lineNumber: 27
         },
         __self: this
       }, function (_ref2) {
         var handleSubmit = _ref2.handleSubmit,
             _onInputChange = _ref2.onInputChange,
             errorMessage = _ref2.errorMessage,
-            auth = _ref2.auth;
+            auth = _ref2.auth,
+            setErrorMessage = _ref2.setErrorMessage;
         return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_components_Layout__WEBPACK_IMPORTED_MODULE_6__["default"], {
           title: 'Login',
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 31
+            lineNumber: 30
           },
           __self: this
         }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_apollo__WEBPACK_IMPORTED_MODULE_9__["Mutation"], {
@@ -2140,7 +2153,7 @@ function (_Component) {
           onError: function onError() {},
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 32
+            lineNumber: 31
           },
           __self: this
         }, function (mutate, _ref3) {
@@ -2152,6 +2165,7 @@ function (_Component) {
             next_router__WEBPACK_IMPORTED_MODULE_15___default.a.push('/');
           }
 
+          console.log('properties', data, loading);
           return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
             className: "form-container d-flex flex-column justify-content-center",
             __source: {
@@ -2198,7 +2212,8 @@ function (_Component) {
             onSubmit: handleSubmit.bind(_this, {
               auth: auth,
               mutate: mutate,
-              validateInputs: _this.validateInputs
+              validateInputs: _this.validateInputs,
+              setErrorMessage: setErrorMessage
             }),
             __source: {
               fileName: _jsxFileName,
@@ -2214,7 +2229,7 @@ function (_Component) {
             },
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 49
+              lineNumber: 56
             },
             __self: this
           }), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_components_InputField__WEBPACK_IMPORTED_MODULE_7__["InputField"], {
@@ -2227,14 +2242,14 @@ function (_Component) {
             },
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 57
+              lineNumber: 64
             },
             __self: this
           }), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_components_ButtonPrimary__WEBPACK_IMPORTED_MODULE_12__["ButtonPrimary"], {
             title: 'Login',
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 66
+              lineNumber: 73
             },
             __self: this
           }))));
@@ -2270,7 +2285,7 @@ var UNFILLED_FIELDS_ERROR = 'Error: you must complete all of the fields';
 
 /***/ }),
 
-/***/ 5:
+/***/ 3:
 /*!*******************************!*\
   !*** multi ./pages/login.tsx ***!
   \*******************************/
